@@ -1,10 +1,10 @@
 const Nav:React.FC = () => {
 
     return (
-        <div className="container">
-            <div className="navigation">
+        <div className="navigation fade">
+            <div className="container flex-row">
                 <div className="nav-group flex-row">
-                    <h1>Fiindr</h1>
+                    <h1>F<b className="text-accent">ii</b>ndr</h1>
                     <nav className="nav">
                         <a href="#">Products</a>
                         <a href="#">Developers</a>

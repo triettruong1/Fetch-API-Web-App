@@ -1,8 +1,8 @@
 const Demo = () => {
 
     return (
-        <div className="demo">
-            Hello
+        <div className="demo box-shadow">
+            
         </div>
     );
 }
