@@ -1,38 +1,218 @@
-.App {
-  text-align: center;
+:root{
+  --ff-standard: 'Montserrat', sans-serif;
+  --clr-primary-1: #93E1D8;
+  --clr-primary-2: #FFA69E;
+  --clr-accent: #AFFF0D;
+
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.5rem;
+  --fs-700: 1.75rem;
+  --fs-800: 2rem;
+
+  --fs-1000: 3.5rem;
+
+  --fs-xl: 5rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Box sizing rules */
+
+*,
+
+*::before,
+
+*::after {
+
+  box-sizing: border-box;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Remove default margin */
+
+body,
+
+h1,
+
+h2,
+
+h3,
+
+h4,
+
+p,
+
+figure,
+
+blockquote,
+
+dl,
+
+dd {
+
+  margin: 0;
+
 }
 
-.App-header {
-  background-color: #282c34;
+body{
+  font-family: var(--ff-standard);
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+
+ul[role='list'],
+
+ol[role='list'] {
+
+  list-style: none;
+
+}
+
+/* Set core root defaults */
+
+html:focus-within {
+
+  scroll-behavior: smooth;
+
+}
+
+/* Set core body defaults */
+
+body {
+
   min-height: 100vh;
+
+  text-rendering: optimizeSpeed;
+
+  line-height: 1.5;
+
+}
+
+/* A elements that don't have a class get default styles */
+
+a:not([class]) {
+
+  text-decoration-skip-ink: auto;
+
+}
+
+/* Make images easier to work with */
+
+img,
+
+picture {
+
+  max-width: 100%;
+
+  display: block;
+
+}
+
+/* Inherit fonts for inputs and buttons */
+
+input,
+
+button,
+
+textarea,
+
+select {
+
+  font: inherit;
+
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html:focus-within {
+
+    scroll-behavior: auto;
+
+  }
+
+  *,
+
+  *::before,
+
+  *::after {
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+
+  }
+
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: min(85%, 80rem);
+  margin: 0 auto;
+
+}
+
+.gradient-bg {
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  background: conic-gradient(from 211deg at 150% 150%, var(--clr-accent) 30deg, var(--clr-primary-1) 80deg, var(--clr-primary-2) 110deg );
+  /* background: linear-gradient(90deg, rgba(147,225,216,1) 24%, rgba(255,166,158,1) 83%); */
+  z-index: -1;
+}
+
+.navigation {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 1em;
+  margin-bottom: 2em;
+}
+
+.nav-group {
+  gap: var(--fs-800);
+}
+
+nav {
+  display: flex;
+  font-size: var(--fs-500);
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+nav > a {
+  margin-inline: .5em;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  grid-template-columns: repeat(12, 1fr);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.demo {
+  grid-column: 6 / span 7;
+}
+
+.legend {
+  grid-column: 1 / span 5;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.button {
+  color: #fff;
+  background: #000;
+  padding: 0 1em;
+  opacity: .5;
+  border-radius: 1000px;
 }
