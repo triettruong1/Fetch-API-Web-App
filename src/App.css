@@ -202,8 +202,9 @@ nav > a {
   gap: var(--fs-800);
 }
 .content {
+  margin-top: 5em;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 10vh);
 }
 
 .demo {
@@ -227,7 +228,7 @@ nav > a {
   border-radius: 1rem;
   width: 7rem;
   height: auto;
-  margin-top: .5em;
+  margin-top: 1em;
   left: 40%;
   transform: rotate(-25deg);
 }
