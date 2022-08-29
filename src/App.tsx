@@ -5,7 +5,7 @@ import Background from './Components/Background';
 import Legend from './Components/Legend';
 import Demo from './Components/Demo';
 
-function App() {
+const App:React.FC = () => {
   return (
     <div className="App">
       <Background/>
