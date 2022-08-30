@@ -233,6 +233,31 @@ nav > a {
   transform: rotate(-25deg);
 }
 
+.demo{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden scroll;
+  border: transparent 2em solid;
+  padding: 1em;
+}
+
+.person-box > *{
+  flex-grow: 1;
+  margin-block: .5em;
+}
+
+.person-info {
+  box-shadow: 5px 5px #000;
+}
+
+.male {
+  background: var(--clr-primary-1);
+}
+.female {
+  background: var(--clr-primary-2);
+}
+
 /* utility classes */
 .flex-row {
   display: flex;

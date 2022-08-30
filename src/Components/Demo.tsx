@@ -17,7 +17,8 @@ const Demo:React.FC = () => {
                     {
                         picture: newRandomUser.picture.thumbnail,
                         country: newRandomUser.location.country,
-                        age: newRandomUser.registered.age
+                        age: newRandomUser.dob.age,
+                        gender: newRandomUser.gender
                     }]);
             }
             setFetching(false);
@@ -34,10 +35,10 @@ const Demo:React.FC = () => {
         )
         :
         (
-            <div className="demo box-shadow">
+            <div className= "demo box-shadow">
                 {users.map((user, index) => {
                     return (
-                        <PersonBox key={index} picture = {user.picture} age = {user.age} country = {user.country}/>                        
+                        <PersonBox key={index} {...user}/>                        
                     )
                 })}
             </div>

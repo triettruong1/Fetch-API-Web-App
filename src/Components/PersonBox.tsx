@@ -4,15 +4,20 @@ export interface Person{
     picture?: string
     country: string;
     age: number;
+    gender: string;
 }
 
-const PersonBox:React.FC<Person> = ({picture, age, country}) => {
+const PersonBox:React.FC<Person> = ({picture, age, country, gender}) => {
     return(
-        <div className="person-box">
-            <img src={picture}></img>
-            <div>
-                Age: {age} <br />
-                Country: {country}
+        <div className="person-box flex-row">
+            <div className="person-avatar">
+                <img src={picture}></img>
+            </div>
+            <div className={gender.concat(" person-info")}>
+                <div>
+                    Age: {age} <br />
+                    Country: {country}
+                </div>
             </div>
         </div>
     );
