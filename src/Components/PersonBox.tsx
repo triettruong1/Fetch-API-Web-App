@@ -9,11 +9,11 @@ export interface Person{
 
 const PersonBox:React.FC<Person> = ({picture, age, country, gender}) => {
     return(
-        <div className="person-box flex-row">
+        <div className={gender.concat(" person-box flex-row")}>
             <div className="person-avatar">
                 <img src={picture}></img>
             </div>
-            <div className={gender.concat(" person-info")}>
+            <div className="person-info">
                 <div>
                     Age: {age} <br />
                     Country: {country}
