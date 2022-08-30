@@ -1,19 +1,20 @@
+import React from "react";
 
-interface Person{
-    picture: string
-    location?: {
-        country: string;
-        [key: string]: any;
-    }
-    registered?: {
-        age: number;
-        [key: string]: any;
-    }
+export interface Person{
+    picture?: string
+    country: string;
+    age: number;
 }
 
-const PersonBox:React.FC<Person> = (person) => {
+const PersonBox:React.FC<Person> = ({picture, age, country}) => {
     return(
-        <h1></h1>
+        <div className="person-box">
+            <img src={picture}></img>
+            <div>
+                Age: {age} <br />
+                Country: {country}
+            </div>
+        </div>
     );
 }
 

@@ -1,19 +1,47 @@
-import PersonBox from "./PersonBox";
+import React, { useEffect, useState } from "react";
+import PersonBox, { Person } from "./PersonBox";
 
-const API_URL = 'https://randomuser.me/api/';
 
 const Demo:React.FC = () => {
-    const users = [];
+    let [users, setUsers] = useState<Person[]>([]);
+    const [isFetching, setFetching] = useState(false);
  
-    for (let index = 0; index < 5; index++) {
-        fetch(API_URL)
-        .then((response) => response.json())
-        .then((data) => users[index] = data);   
-    }
+    useEffect(() => {
+        setUsers([]);
+        async function fetching() {
+            setFetching(true);
+            for (let i = 0; i < 5; i++) {
+                const response = await fetch('https://randomuser.me/api/').then(response => response.json());
+                const newRandomUser = response.results[0];
+                setUsers(prevUsers => [...prevUsers, 
+                    {
+                        picture: newRandomUser.picture.thumbnail,
+                        country: newRandomUser.location.country,
+                        age: newRandomUser.registered.age
+                    }]);
+            }
+            setFetching(false);
+        }
+        fetching();
+    }, []);
 
     return (
-        <div className="demo box-shadow">
-        </div>
+        isFetching ? 
+        (
+            <div className="demo box-shadow">
+                <h1>loading</h1>
+            </div>
+        )
+        :
+        (
+            <div className="demo box-shadow">
+                {users.map((user, index) => {
+                    return (
+                        <PersonBox key={index} picture = {user.picture} age = {user.age} country = {user.country}/>                        
+                    )
+                })}
+            </div>
+        )
     );
 }
 
