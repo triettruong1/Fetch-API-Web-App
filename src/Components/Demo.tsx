@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import PersonBox, { Person } from "./PersonBox";
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const Demo:React.FC = () => {
-    let [users, setUsers] = useState<Person[]>([]);
+    const [users, setUsers] = useState<Person[]>([]);
     const [isFetching, setFetching] = useState(false);
- 
+
     useEffect(() => {
         setUsers([]);
         async function fetching() {
@@ -15,7 +18,7 @@ const Demo:React.FC = () => {
                 const newRandomUser = response.results[0];
                 setUsers(prevUsers => [...prevUsers, 
                     {
-                        picture: newRandomUser.picture.thumbnail,
+                        picture: newRandomUser.picture.medium,
                         country: newRandomUser.location.country,
                         age: newRandomUser.dob.age,
                         gender: newRandomUser.gender
@@ -29,8 +32,9 @@ const Demo:React.FC = () => {
     return (
         isFetching ? 
         (
-            <div className="demo box-shadow">
-                <h1>loading</h1>
+            <div className="demo box-shadow center hidden">
+                <Spin indicator={antIcon}/>
+                <h2>Fetching users...</h2>
             </div>
         )
         :
@@ -38,7 +42,7 @@ const Demo:React.FC = () => {
             <div className= "demo box-shadow">
                 {users.map((user, index) => {
                     return (
-                        <PersonBox key={index} {...user}/>                        
+                        <PersonBox key={index}{...user}/>                        
                     )
                 })}
             </div>

@@ -16,6 +16,7 @@
   --fs-xl: 5rem;
 }
 
+
 /* Andy Bell's css reset */
 /* Box sizing rules */
 
@@ -172,6 +173,12 @@ nav {
 }
 nav > a {
   margin-inline: .5em;
+  transition: all 150ms ease-in;
+} 
+nav > a:hover,:focus{
+  color: var(--clr-accent);
+  outline-color: var(--clr-accent);
+  outline-offset: 5px;
 }
 
 /* elements classes */
@@ -180,7 +187,6 @@ nav > a {
 .container {
   width: min(85%, 80rem);
   margin: 0 auto;
-
 }
 
 .gradient-bg {
@@ -207,13 +213,6 @@ nav > a {
   grid-template-rows: repeat(5, 10vh);
 }
 
-.demo {
-  grid-column: 6 / span 7;
-  grid-row: 1 / span 5;
-  background: #fff;
-  border-radius: 10px;
-}
-
 .legend {
   position: relative;
   grid-column: 1 / span 4;
@@ -234,16 +233,44 @@ nav > a {
 }
 
 .demo{
+  grid-column: 6 / span 7;
+  grid-row: 1 / span 5;
+  background: #fff;
+  border-radius: 10px;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden scroll;
   border: transparent 2em solid;
   padding: 1em;
+
+}
+/* width */
+.demo::-webkit-scrollbar {
+  width: 5px;
+  transition: all 100ms ease-in;
+}
+/* Track */
+.demo::-webkit-scrollbar-track {
+  background: rgb(240, 240, 240);
+  border-radius: 1000px;
+}
+/* Handle */
+.demo::-webkit-scrollbar-thumb {
+  background: rgba(151, 151, 151, 0.25);
+  border-radius: 1000px;
+}
+/* Handle on hover */
+.demo::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-accent);
 }
 
-.person-box > *{
-  flex-grow: 1;
+.person-box {
+  margin-block: .5em;
+}
+.person-box > * {
+  flex-grow: 1; 
   margin-block: .5em;
 }
 
@@ -254,10 +281,14 @@ nav > a {
 
 .person-info {
   padding: .5em;
-  box-shadow: 5px 5px #000;
   width: 70%;
+  transition: all 100ms ease-in;
+  transform: translate(0, 0);
 }
-
+.person-info:hover{
+  transform: translate(-5px, -5px);
+  box-shadow: 5px 5px #000;
+}
 
 .male img,
 .male .person-info {
@@ -269,6 +300,13 @@ nav > a {
 .female .person-info {
   background: var(--clr-primary-2);
   border: 2px solid var(--clr-primary-2);
+}
+
+.hidden::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.hidden > * {
+  margin-block: .5em;
 }
 
 /* utility classes */
@@ -298,5 +336,15 @@ nav > a {
 }
 
 .text-accent {
+  color: var(--clr-accent);
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.anticon.anticon-loading.anticon-spin.ant-spin-dot {
+  font-size: 100px !important;
   color: var(--clr-accent);
 }

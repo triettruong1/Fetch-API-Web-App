@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface Person{
-    picture?: string
+    picture: string
     country: string;
     age: number;
     gender: string;
