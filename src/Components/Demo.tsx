@@ -1,36 +1,57 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PersonBox, { Person } from "./PersonBox";
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const antIcon = <LoadingOutlined />;
-
+// const firstLoadStyle:CSSStyleRule = {
+    
+// }
 const Demo:React.FC = () => {
     const [users, setUsers] = useState<Person[]>([]);
-    const [isFetching, setFetching] = useState(false);
+    const [firstLoad, setFirstLoad] = useState(false);
+    const parentNodeScrollRef = useRef<HTMLDivElement>(null);
+    async function firstFetch() {
+        setFirstLoad(true);
+        const newRandomUsers :Person[] = [];
+        for (let i = 0; i < 5; i++) {
+            const response = await fetch('https://randomuser.me/api/').then(response => response.json());
+            const userData = response.results[0];
+            const newUser : Person = {
+                picture: userData.picture.medium,
+                country: userData.location.country,
+                age: userData.dob.age,
+                gender: userData.gender 
+            }
+            newRandomUsers.push(newUser);
+        }
+        setUsers(prevUsers => [...prevUsers, ...newRandomUsers]);
+        setFirstLoad(false);
+    }
+
+    async function fetchMore() {
+        const newRandomUsers :Person[] = [];
+        for (let i = 0; i < 5; i++) {
+            const response = await fetch('https://randomuser.me/api/').then(response => response.json());
+            const userData = response.results[0];
+            const newUser : Person = {
+                picture: userData.picture.medium,
+                country: userData.location.country,
+                age: userData.dob.age,
+                gender: userData.gender 
+            }
+            newRandomUsers.push(newUser);
+        }
+        setUsers(prevUsers => [...prevUsers, ...newRandomUsers]);
+    }
 
     useEffect(() => {
-        setUsers([]);
-        async function fetching() {
-            setFetching(true);
-            for (let i = 0; i < 5; i++) {
-                const response = await fetch('https://randomuser.me/api/').then(response => response.json());
-                const newRandomUser = response.results[0];
-                setUsers(prevUsers => [...prevUsers, 
-                    {
-                        picture: newRandomUser.picture.medium,
-                        country: newRandomUser.location.country,
-                        age: newRandomUser.dob.age,
-                        gender: newRandomUser.gender
-                    }]);
-            }
-            setFetching(false);
-        }
-        fetching();
+        firstFetch();
     }, []);
 
     return (
-        isFetching ? 
+        firstLoad ? 
         (
             <div className="demo box-shadow center hidden">
                 <Spin indicator={antIcon}/>
@@ -39,14 +60,25 @@ const Demo:React.FC = () => {
         )
         :
         (
-            <div className= "demo box-shadow">
-                <div className="controls">hello</div>
+            <div className= "demo box-shadow" ref={parentNodeScrollRef}>
+                <h2>Our active monthly users!</h2>
                 <div className="users-box">
-                    {users.map((user, index) => {
-                        return (
-                            <PersonBox key={index}{...user}/>                        
-                        )
-                    })}
+                    <InfiniteScroll
+                        pageStart={0}
+                        loadMore={fetchMore}
+                        hasMore={true}
+                        threshold={10}
+                        loader={<div className="center" style={{paddingBlock:".215em"}}><Spin indicator={antIcon}/></div>}
+                        useWindow={false}
+                        style={{width: "100%"}}
+                        getScrollParent={() => parentNodeScrollRef.current}
+                    >
+                        {users.map((user, index) => {
+                            return (
+                                <PersonBox key={index}{...user}/>                        
+                            )
+                        })}
+                    </InfiniteScroll>
                 </div>
             </div>
         )

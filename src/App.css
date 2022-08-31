@@ -345,12 +345,13 @@ nav > a:hover,:focus{
 }
 
 .center {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .anticon.anticon-loading.anticon-spin.ant-spin-dot {
-  font-size: 100px !important;
+  font-size: 100px;
   color: var(--clr-accent);
 }
 
@@ -362,7 +363,7 @@ nav > a:hover,:focus{
     --fs-800: 2.5rem;
   
     --fs-1000: 3rem;
-  
+    
     --fs-xl: 4rem;
   }
 
