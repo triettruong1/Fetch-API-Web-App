@@ -3,7 +3,7 @@ import PersonBox, { Person } from "./PersonBox";
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+const antIcon = <LoadingOutlined />;
 
 const Demo:React.FC = () => {
     const [users, setUsers] = useState<Person[]>([]);
@@ -40,11 +40,14 @@ const Demo:React.FC = () => {
         :
         (
             <div className= "demo box-shadow">
-                {users.map((user, index) => {
-                    return (
-                        <PersonBox key={index}{...user}/>                        
-                    )
-                })}
+                <div className="controls">hello</div>
+                <div className="users-box">
+                    {users.map((user, index) => {
+                        return (
+                            <PersonBox key={index}{...user}/>                        
+                        )
+                    })}
+                </div>
             </div>
         )
     );

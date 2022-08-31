@@ -9,7 +9,6 @@
   --fs-500: 1.25rem;
   --fs-600: 1.5rem;
   --fs-800: 2.75rem;
-  --fs-900: 3.5rem;
 
   --fs-1000: 3.5rem;
 
@@ -87,6 +86,8 @@ body {
   text-rendering: optimizeSpeed;
 
   line-height: 1.5;
+
+  font-size: var(--fs-500);
 
 }
 
@@ -185,7 +186,7 @@ nav > a:hover,:focus{
 
 
 .container {
-  width: min(85%, 80rem);
+  width: min(85%, 100rem);
   margin: 0 auto;
 }
 
@@ -207,6 +208,7 @@ nav > a:hover,:focus{
 .nav-group {
   gap: var(--fs-800);
 }
+
 .content {
   margin-top: 5em;
   grid-template-columns: repeat(12, 1fr);
@@ -267,25 +269,28 @@ nav > a:hover,:focus{
 }
 
 .person-box {
-  margin-block: .5em;
+  margin-block: calc(var(--fs-400)/3.5);
+  font-size: var(--fs-400);
 }
 .person-box > * {
   flex-grow: 1; 
-  margin-block: .5em;
+  margin-block: var(--fs-400);
 }
 
 .person-avatar > *{
+  width: calc(var(--fs-xl) * 1.215);
+  aspect-ratio: 1;
   border-radius: 50%;
   object-fit: contain;
 }
 
 .person-info {
-  padding: .5em;
+  padding: var(--fs-400);
   width: 70%;
   transition: all 100ms ease-in;
   transform: translate(0, 0);
 }
-.person-info:hover{
+.person-info:hover {
   transform: translate(-5px, -5px);
   box-shadow: 5px 5px #000;
 }
@@ -293,13 +298,13 @@ nav > a:hover,:focus{
 .male img,
 .male .person-info {
   background: var(--clr-primary-1);
-  border: 2px solid var(--clr-primary-1);
+  border: 3px  solid var(--clr-primary-1);
 }
 
 .female img,
 .female .person-info {
   background: var(--clr-primary-2);
-  border: 2px solid var(--clr-primary-2);
+  border: 3px  solid var(--clr-primary-2);
 }
 
 .hidden::-webkit-scrollbar-track {
@@ -347,4 +352,26 @@ nav > a:hover,:focus{
 .anticon.anticon-loading.anticon-spin.ant-spin-dot {
   font-size: 100px !important;
   color: var(--clr-accent);
+}
+
+@media (max-width: 80rem){
+  :root{
+    --fs-400: .75rem;
+    --fs-500: .75rem;
+    --fs-600: 1.25rem;
+    --fs-800: 2.5rem;
+  
+    --fs-1000: 3rem;
+  
+    --fs-xl: 4rem;
+  }
+
+
+}
+
+@media (max-height: 42rem){
+  .content {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 12.5vh);
+  }
 }
