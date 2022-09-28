@@ -191,11 +191,10 @@ nav > a:hover,:focus{
 }
 
 .gradient-bg {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: conic-gradient(from 211deg at 150% 150%, var(--clr-accent) 30deg, var(--clr-primary-1) 80deg, var(--clr-primary-2) 110deg );
-  /* background: linear-gradient(90deg, rgba(147,225,216,1) 24%, rgba(255,166,158,1) 83%); */
   z-index: -1;
 }
 
@@ -211,7 +210,7 @@ nav > a:hover,:focus{
 
 .content {
   display: grid;
-  margin-top: 5em;
+  margin-top: calc(var(--fs-400) * 5);
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(5, 10vh);
 }
@@ -305,7 +304,7 @@ nav > a:hover,:focus{
 .button {
   color: #fff;
   background: #000;
-  padding: 0 1em;
+  padding: 0 calc(var(--fs-400));
   opacity: .5;
   border-radius: 1000px;
 }
@@ -347,26 +346,24 @@ nav > a:hover,:focus{
 
 
 }
-@media (max-width: 55rem){
+@media (max-width: 50rem){
   :root{
-    --fs-400: .41275rem;
-    --fs-500: .5125rem;
-    --fs-600: .73125rem;
-    --fs-800: 1.25rem;
-  
-    --fs-1000: 2rem;
-    
-    --fs-xl: 3rem;
+    --fs-400: .55rem;
   }
   .content {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+  }
+  .legend {
+    text-align: center;
+    margin-bottom: 2em;
   }
   .legend > img {
-    position: static;
+    display: none;
   }
-  .demo {
-    max-height: 100vh;
+  .gradient-bg {
+    background: linear-gradient(90deg, rgba(147,225,216,1) 24%, rgba(255,166,158,1) 83%);
   }
 }
 
