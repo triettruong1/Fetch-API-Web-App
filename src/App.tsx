@@ -11,7 +11,7 @@ const App:React.FC = () => {
       <Background/>
       <Nav/>
       <div className="container">
-        <div className="content grid">
+        <div className="content">
           <Legend/>
           <Demo/>
         </div>

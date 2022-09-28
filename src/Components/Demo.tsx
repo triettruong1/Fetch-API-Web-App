@@ -67,7 +67,7 @@ const Demo:React.FC = () => {
                         pageStart={0}
                         loadMore={fetchMore}
                         hasMore={true}
-                        threshold={10}
+                        threshold={100}
                         loader={<div className="center" style={{paddingBlock:".215em"}}><Spin indicator={antIcon}/></div>}
                         useWindow={false}
                         style={{width: "100%"}}
